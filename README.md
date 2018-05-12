@@ -1,5 +1,7 @@
 # Memory Game 
 
+* Udacity Memory Game Project
+
 ## How to play
 
 * Clicking on cards will turn them over so that you can see what lies on them.
@@ -16,6 +18,10 @@
 
 * If all cards match, game ends <br>
 <img src="img/Screen3.png" width="400">
+
+## Built with 
+
+* Html, Css, JavaScript
 
 ## External libraries Used
 
