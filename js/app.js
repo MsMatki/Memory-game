@@ -2,11 +2,11 @@
 let symbolsArray = ['fa-diamond','fa-paper-plane-o','fa-anchor','fa-bolt','fa-cube','fa-leaf','fa-bicycle','fa-bomb'];
 symbolsArray = symbolsArray.concat(symbolsArray);
 
-let deck = document.querySelector('.deck');
-let restart = document.querySelector('.restart');
-let movesOutput = document.querySelector('.moves');
-let star = document.querySelectorAll('.fa-star');
-let time = document.querySelector('.time');
+const deck = document.querySelector('.deck');
+const restart = document.querySelector('.restart');
+const movesOutput = document.querySelector('.moves');
+const star = document.querySelectorAll('.fa-star');
+const time = document.querySelector('.time');
 let cardsMatch = [];
 let cardsOppened = [];
 let moves = 0;
@@ -18,7 +18,7 @@ let cancel;
 let clicks = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+const shuffle = array => {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -32,7 +32,7 @@ function shuffle(array) {
 }
 
 //function creates a new game
-function newGame(){
+const newGame = () => {
 for(let i = 0; i < star.length; i += 1){
     star[i].classList.remove('fa-star-o');
     star[i].classList.add('fa-star');
@@ -48,28 +48,28 @@ for(let i = 0; i < star.length; i += 1){
 }
 
 //starts the timer on first click
-function startTimer() {
+const startTimer = () => {
     clicks += 1;
     if(clicks === 1){
-	cancel = setInterval(function () {
+	cancel = setInterval(()=> {
         second += 1
         time.innerHTML = second;
     }, 1000);
 }
 }
 //stops the timer
-function stopTimer(){
+const stopTimer = () => {
     clicks = 0;
     clearTimeout(cancel);
 }
 //moves counter
-function countMoves(){
+const countMoves = () => {
     moves += 1;
     movesOutput.innerHTML = moves;
 }
 
 //start game, displays empty cards on start
-function startGame(){
+const startGame = () => {
     
     shuffle(symbolsArray);
     for(let i = 0; i < symbolsArray.length; i += 1){
@@ -81,7 +81,7 @@ function startGame(){
 }
 
 //Stars rating function 
- function starRating(){
+ const starRating = () => {
     if(moves === 12){
         star[2].classList.remove('fa-star');
         star[2].classList.add('fa-star-o');
@@ -97,7 +97,7 @@ function startGame(){
     }
  }   
 //function modal end game
- function endGame() {
+ const endGame = () => {
 	swal({
 		closeOnEsc: false,
 		closeOnClickOutside: false,
@@ -105,14 +105,14 @@ function startGame(){
 		text: 'With ' + moves + ' Moves and ' + score + ' Stars in ' + second + ' Seconds.',
 		icon: 'success',
 		button: 'Play again!'
-	}).then(function (isConfirm) {
+	}).then( isConfirm => {
 		if (isConfirm) {
             newGame();
 		}
 	})
 }
 //restart game modal
-function restartGame(){
+const restartGame = () => {
     swal({
 		closeOnEsc: false,
         closeOnClickOutside: false,
@@ -120,7 +120,7 @@ function restartGame(){
 		text: 'All progress will be lost!',
         icon: 'warning',
         buttons: [true, 'Restart!'],
-	}).then(function (isConfirm) {
+	}).then( isConfirm => {
 		if (isConfirm) {
             newGame(); 
 		}
@@ -128,7 +128,7 @@ function restartGame(){
 }
 
 //function if both cards match
-function bothCardsMatch(){
+const bothCardsMatch = () => {
     classes = document.querySelectorAll('.open');
     for(let i = 0; i < classes.length; i += 1){
     classes[i].classList.remove('open', 'show', 'animated', 'flipInY');
@@ -140,14 +140,14 @@ function bothCardsMatch(){
 }
 
 //if cards do not match, makes cards to red color and closes both cards
-function cardsNotMatch(){
+const cardsNotMatch = () => {
     classes = document.querySelectorAll('.open');
     for(let i = 0; i < classes.length; i += 1){
     classes[i].classList.remove('animated', 'flipInY');
     classes[i].classList.add('red', 'animated', 'tada');
      }
      //function closes both cards if they do not match
-        function closeCards(){
+        const closeCards = () => {
            let card = document.querySelectorAll('.card');
            cardsMatch.slice(cardsOppened);
            cardsOppened = [];
@@ -160,12 +160,12 @@ function cardsNotMatch(){
   }
 
 //display cards and compare them
-function cardDisplay(){
+const cardDisplay = () => {
     movesOutput.innerHTML = moves;
     let card = document.querySelectorAll('.card');
     for(let i = 0; i < card.length; i += 1){
         //Card listener
-    card[i].addEventListener('click', function(){
+    card[i].addEventListener('click', () =>{
         if(card[i].classList.contains('show') || card[i].classList.contains('match')){
             return true;
         }
@@ -197,7 +197,7 @@ function cardDisplay(){
     }
 }
 //onclick restart game
-restart.addEventListener('click',function(){
+restart.addEventListener('click',() => {
    restartGame();
 })
 startGame();
