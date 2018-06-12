@@ -10,7 +10,7 @@
 
 ## Preview
 
-* Click [Here](https://www.google.com) to Play the game.
+* Click [Here](https://msmatki.github.io/Memory-game/) to Play the game.
 
 ## How to install
 * To run this application, download the GitHub zip file or clone the repository.
