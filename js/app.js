@@ -72,9 +72,7 @@ const countMoves = () => {
 const startGame = () => {
     
     shuffle(symbolsArray);
-    for(let i = 0; i < symbolsArray.length; i += 1){
-        output += '<li class="card"><i class="fa '+symbolsArray[i]+'"></i></li>';
-       }
+       output = symbolsArray.map(symbol => `<li class="card"><i class="fa ${symbol}"></i></li>`).join('')
        deck.innerHTML = output; 
        cardDisplay();
        output = ''; 
